@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Jehezkiel</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="weather">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>{{ weather.name }}</ion-card-title>
+        <ion-card-subtitle>{{ weather.weather[0].description | titlecase }}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="weather-container">
+          <img [src]="getWeatherIconUrl(weather.weather[0].icon)" alt="Weather icon">
+          <h2>{{ weather.main.temp }}°C</h2>
+        </div>
+        <p>Humidity: {{ weather.main.humidity }}%</p>
+        <p>Wind Speed: {{ weather.wind.speed }} m/s</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <ion-spinner *ngIf="!weather"></ion-spinner>
+</ion-content>
+
+<style>
+  .weather-container {
+    display: flex;
+    justify-content: center;
+    align-items: center
+  }
+  .weather-container img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+  }
+  .weather-container h2 {
+    font-size: 2.5rem;
+  }
+</style>
